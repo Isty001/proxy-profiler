@@ -3,6 +3,36 @@ Prometheus compatible metrics to be displayed in Grafana.
 
 # Usage
 
+You can provide your own config in `config/proxy/config.yml`.
+
+## Source - Destination
+
+You can map the different source hosts to destinations if that's necessary
+
+```yml
+proxy:
+  sourceToDestinationHostMap:
+    source1-example.com:
+      scheme: 'https'
+      host: 'destination1-example.com'
+    source2-example.com:
+      scheme: 'https'
+      host: 'destination2-example.com'
+```
+
+If this is not set, or the source is not found, then the default will be use
+
+```yml
+proxy:
+  destination:
+    defaultDestination:
+      scheme: 'https'
+      host: 'destination-example.com'
+```
+
+In case the proxy is running on the same host machine as the destination app, then you can just use `host.docker.internal` as the destination host.
+
+
 ## HTTPS
 
 If you want to run the proxy to run on https, then you need to provide a cert and key in `config/proxy/config.yml`:
