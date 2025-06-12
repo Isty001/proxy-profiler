@@ -1,4 +1,9 @@
-# HTTPS
+This is a simple reverse proxy that captures each requests and measures the the it takes for the destination to server a response, then collect this data into 
+Prometheus compatible metrics to be displayed in Grafana.
+
+# Usage
+
+## HTTPS
 
 If you want to run the proxy to run on https, then you need to provide a cert and key in `config/proxy/config.yml`:
 
@@ -25,7 +30,7 @@ proxy:
     insecureSkipVerify: true
 ```
 
-# Running
+## Running
 
 `make up` will start and instance of Grafana and Prometheus additionally, by default you can acces them on the host at:
 
@@ -34,6 +39,6 @@ Grafana: `http://127.0.0.1:3000`
 
 `make up-standalone` will only start the proxy, in case you already have your own Prometheus
 
-# Grafana
+## Grafana
 
 By default, you can add the data source at `http://prometheus:9090`
