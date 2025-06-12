@@ -1,0 +1,29 @@
+version: '3'
+
+name: proxy-profiler
+
+include:
+  - './compose-standalone.yml'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - 'prometheus-data:/prometheus'
+      - './config/prometheus:/etc/prometheus'
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - '4000:3000'
+    depends_on:
+      - prometheus
+    restart: always
+
+volumes:
+  prometheus-data: ~

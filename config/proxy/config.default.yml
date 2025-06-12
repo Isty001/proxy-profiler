@@ -1,0 +1,11 @@
+proxy:
+  port: 8082
+  destination:
+    insecureSkipVerify: true
+    defaultDestination:
+      scheme: 'http'
+      host: 'host.docker.internal'
+
+metrics:
+  requestDurationMilliseconds:
+    buckets: [10, 25, 50, 150, 200, 300, 400, 600, 800, 1000]

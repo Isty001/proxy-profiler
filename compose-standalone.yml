@@ -1,0 +1,17 @@
+version: '3'
+
+name: proxy-profiler
+
+services:
+  proxy:
+    image: 'golang:1.24-alpine'
+    volumes:
+      - ./:/app
+    ports:
+      - '8082:8082'
+    working_dir: /app
+    entrypoint: ./docker/proxy/entrypoint.sh
+    # network_mode: "host"
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
